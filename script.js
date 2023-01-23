@@ -2,8 +2,6 @@ let nameUsers = []
 
 let mensagem = []
 
-
-
 function nomeColocado() {
     // Vai ser perguntado o nome do usuario para ser salvo
     const nomeDoUsuario = prompt('Qual o seu nome')
@@ -35,9 +33,6 @@ function respostaLogin() {
 
     mostrarMensagens()
     setInterval(mostrarMensagens, 3000)
-
-    loadUsuarios()
-    setInterval(loadUsuarios, 10000)
 
 }
 
@@ -80,36 +75,54 @@ function mostrarMensagens() {
 
 }
 
-function loadUsuarios() {
 
-    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
-    promise.then(loadEncontrado)
-    promise.catch(loadNaoEncontrado)
+
+function mensagensEncontradas(resposta) {
+    const mensagem = resposta.data
+
+    let mensagensContainer = document.querySelector('.containerCentral .ul')
+    mensagensContainer.innerHTML = ''
+
+    for (let i = 0; i < mensagem.length; i++) {
+
+        switch (mensagem[i].type) {
+
+            case 'status': mensagensContainer.innerHTML += `
+            <li data-test="message" class='entrada'>
+
+                <span class='time'>(${message[i].time})</span>
+                <strong class='name'>${message[i].from}</strong>
+                <span class='text'>${message[i].text}</span> 
+
+             </li>`
+                break;
+        }
+
+    }
+
+    mensagensContainer.lastChild.srollIntoView()
 }
 
-function loadEncontrado(){
+function mandarMensagem() {
 
-    usuario = response.data
+    const enviarMensagem = document.querySelector('.rodape .mensagemRodape').value
+    document.querySelector('.rodape .mensagemRodape').value = ''
+    if (enviarMensagem === '') {
+
+        return enviarMensagem
+    }
+
+    const novamensagem = {
+        from: nameUsers.name,
+        to: 'Todos',
+        text: enviarMensagem,
+        type: 'messagem'
+    }
+
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novamensagem)
+    promise.then(mostrarMensagens)
+    promise.catch(() => window.location.reload())
 }
-
-function loadNaoEncontrado(){
-
-    alert('Usuários procurados nao encontrados')
-    window.location.reload()
-}
-
-
-function mensagensEncontradas(){
-
-    
-
-}
-
-
-
-
-
-
 
 
 
