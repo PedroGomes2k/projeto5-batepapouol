@@ -19,9 +19,9 @@
             <div class="containerMenu">
                 <ul>
                     <li class="cabecalhoLi">Escolha um contato para enviar mensagem:</li>
-                    <div class="ilMenu">
+                    <div class="ilMenu" >
                         <li>
-                            <ion-icon name="people-sharp"></ion-icon>
+                            <ion-icon name="people-sharp" onclick="sideBarAbrir()" ></ion-icon>
                             Todos
                         </li>
                         <li class="ilicon escondido"> <ion-icon name="checkmark-outline"></ion-icon></li>
@@ -66,41 +66,24 @@
         <div class="cabecalho ">
             <div class="imagensCabecalho">
                 <img src="./Imagens/logo.png">
-                <ion-icon name="people-sharp"></ion-icon>
+                <ion-icon name="people-sharp" onclick="sideBarAbrir()"></ion-icon>
             </div>
         </div>
-        <div class="containerCentral" >
+        <div class="containerCentral">
             <ul ::-webkit-scrollbar { display: none;}>
-                <li class="mensagensEntrada  ">
-                    (09:21:45)  entra na sala...
-                </li>
-                <li class="mensagens ">
-                    (09:23:45) João entra na sala...
-                </li>
-                <li class="mensagens ">
-                    (09:24:45) João entra na sala...
-                </li>
-                <li class="mensagens ">
-                    (09:27:45) João entra na sala...
-                </li>
-                <li class="mensagensSaida ">
-                    (09:28:45) João saiu na sala...
-                </li>
-
             </ul>
         </div>
         <div class="rodape">
             <div class="rodapeEstilos">
-                <div class="mensagensRodape">Escreva aqui...</div>
-                <ion-icon name="paper-plane-outline"></ion-icon>
+                <input type="text" placeholder="Escreva aqui..." class="mensagemRodape" data-teste="input-message">
+                <ion-icon name="paper-plane-outline" onclick="enviarMensagem()" data-teste="send-message"></ion-icon>
             </div>
         </div>
     </div>
-    <script src="https://mock-api.driven.com.br/api/v6/uol/participants"></script>
-   <!-- <script src="https://mock-api.driven.com.br/api/v6/uol/status"></script>
-    <script src="https://mock-api.driven.com.br/api/v6/uol/messages"></script>
-    <script src="https://mock-api.driven.com.br/api/v6/uol/messages"></script>-->
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
     <script src="script.js"></script>
 </body>
 
